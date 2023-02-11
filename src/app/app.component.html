@@ -1,0 +1,18 @@
+<mat-drawer-container >
+  <mat-drawer #drawer [mode]="'over'" position="end" [disableClose]="true" autoFocus="false" class="sidenav-drawer">
+    <app-drawer (close)="closePanel(drawer)"></app-drawer>
+  </mat-drawer>
+  <mat-drawer-content class="sidenav-background">
+    <div class="page-wrapper">
+      <div class="navbar">
+        <div class="logo">
+          <a href="#"><img src="https://static.uacdn.net/production/_next/static/images/logo.svg?q=75&fm=webp&w=256" alt=""></a>
+        </div>
+        <div class="nav-btn">
+          <button mat-button *ngIf="!logout" (click)="drawer.toggle()">Log in</button>
+          <button mat-button *ngIf="logout" (click)="onLogout()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

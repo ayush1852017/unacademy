@@ -1,0 +1,104 @@
+<div class="sidebar-wrapper">
+  <div>
+    <mat-icon (click)="closePanel()">close</mat-icon>
+  </div>
+  <div class="sidebar-content">
+    <div>
+      <h2>Login</h2>
+    </div>
+    <div>
+      <p>or <span (click)="openSignUp=true" style="cursor: pointer;">create your account</span></p>
+    </div>
+    <div *ngIf="!openSignUp">
+      <!-- <form #f="ngForm" [formGroup]="myForm" class="phone-input"> -->
+      <!-- <ngx-intl-tel-input [cssClass]="'custom'" [preferredCountries]="preferredCountries"
+          [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+          [searchCountryField]="[SearchCountryField.Iso2,SearchCountryField.Name]"
+          [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India"
+          [separateDialCode]="separateDialCode" [numberFormat]="PhoneNumberFormat.National" name="contact_number"
+          formControlName="contact_number">
+        </ngx-intl-tel-input> -->
+      <!-- </form> -->
+      <form class="user-form" [formGroup]="signInForm" >
+        <!-- email -->
+        <div class="email-field input-field">
+          <span class="field-label-required">Email Id</span>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="email" placeholder="xyz@gmail.com">
+            <mat-error *ngIf="signInFormControl['email'].errors?.['required']">Email is a required field</mat-error>
+            <mat-error *ngIf="signInFormControl['email'].errors?.['email']">Invalid email</mat-error>
+            <mat-error *ngIf="signInFormControl['email'].errors?.['pattern']">Invalid email (needs to end with .com or
+              .net
+              or a similar top-level domain)</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- enter password -->
+        <div class="create-pwd-field input-field">
+          <span class="field-label-required"><span>Password</span></span>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="password" [type]="showPassword ? 'text' : 'password'" placeholder="Enter your password">
+            <mat-icon matSuffix fontSet="material-icons-outlined" (click)="password()"
+              *ngIf="signInFormControl['password'].value != '' && !showPassword">visibility</mat-icon>
+            <mat-icon matSuffix fontSet="material-icons-outlined" (click)="password()" *ngIf="showPassword">
+              visibility_off</mat-icon>
+            <mat-hint *ngIf="!signInFormControl['password'].value">Enter your password</mat-hint>
+            <mat-error *ngIf="signInFormControl['password'].errors?.['required']">Password is a required field
+            </mat-error>
+            <mat-error *ngIf="signInFormControl['password'].errors?.['invalidPassword']">Please enter a valid password
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- Sign In button -->
+        <button [disabled]="signInForm.invalid" mat-raised-button color="primary" type="submit" (click)="onLogin()" [routerLink]="['/home']">Login</button>
+      </form>
+    </div>
+    <div *ngIf="openSignUp">
+      <form class="user-form" [formGroup]="signUpForm">
+        <!-- name -->
+        <div class="bame-field input-field">
+          <span class="field-label-required">Name</span>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="name" placeholder="Enter your name">
+            <mat-error *ngIf="signUpFormControl['name'].errors?.['required']">Name is a required field</mat-error>
+            <mat-error *ngIf="signUpFormControl['name'].errors?.['pattern']"></mat-error>
+          </mat-form-field>
+        </div>
+        <!-- email -->
+        <div class="email-field input-field">
+          <span class="field-label-required">Email Id</span>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="email" placeholder="xyz@gmail.com">
+            <mat-error *ngIf="signUpFormControl['email'].errors?.['required']">Email is a required field</mat-error>
+            <mat-error *ngIf="signUpFormControl['email'].errors?.['email']">Invalid email</mat-error>
+            <mat-error *ngIf="signUpFormControl['email'].errors?.['pattern']">only alphabets and numbers
+              are allowed in this
+              field</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- enter password -->
+        <div class="create-pwd-field input-field">
+          <span class="field-label-required"><span>Password</span></span>
+          <mat-form-field appearance="outline">
+            <input matInput formControlName="password" [type]="showPassword ? 'text' : 'password'" placeholder="Enter your password">
+            <mat-icon matSuffix fontSet="material-icons-outlined" (click)="password()"
+              *ngIf="signInFormControl['password'].value != '' && !showPassword">visibility</mat-icon>
+            <mat-icon matSuffix fontSet="material-icons-outlined" (click)="password()" *ngIf="showPassword">
+              visibility_off</mat-icon>
+            <mat-hint *ngIf="!signUpFormControl['password'].value">Enter your password</mat-hint>
+            <mat-error *ngIf="signUpFormControl['password'].errors?.['required']">Password is a required field
+            </mat-error>
+            <mat-error *ngIf="signUpFormControl['password'].errors?.['invalidPassword']">Please enter a valid password
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- Sign Up button -->
+        <div style="display: flex;flex-direction: column;gap:10px">
+          <button [disabled]="signUpForm.invalid" mat-raised-button color="primary" (click)="onRegister()">Register</button>
+          <a (click)="openSignUp=false">Already have an account?<span style="color: blue;cursor: pointer;"> Login</span></a>
+        </div>
+      </form>
+    </div>
+    <div></div>
+  </div>
+
+</div>
