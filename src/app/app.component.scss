@@ -31,3 +31,15 @@
 ::ng-deep .mat-drawer-backdrop{
     background-color: rgba(0, 0, 0, 0.5);
 }
+@media screen and ( max-width:1080px) {
+    .sidenav-drawer{
+        width: 50%;
+
+    }
+}
+@media screen and ( max-width:600px) {
+    .sidenav-drawer{
+        width: 100%;
+
+    }
+}

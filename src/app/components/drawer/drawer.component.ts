@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { SnackbarService } from 'src/app/snackbar.service';
 // import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 import { UserService } from 'src/app/user.service';
 
@@ -15,7 +16,7 @@ import { UserService } from 'src/app/user.service';
 })
 export class DrawerComponent implements OnInit {
   @Output() close = new EventEmitter();
-  constructor(private fb: FormBuilder, private userService: UserService) {}
+  constructor(private fb: FormBuilder, private userService: UserService, private snackbarService:SnackbarService) {}
   separateDialCode = false;
   // SearchCountryField = SearchCountryField;
   // CountryISO = CountryISO;
@@ -83,6 +84,11 @@ export class DrawerComponent implements OnInit {
       next: (resp: any) => {
         this.getUserDetails();
         this.openSignUp=false;
+        this.snackbarService.showSnackbar(
+          'Your account has been successfully created.',
+          null,
+          'info'
+        );
       },
       error: (error: any) => {
         console.log(error);
@@ -95,9 +101,16 @@ export class DrawerComponent implements OnInit {
         this.closePanel()
         this.getUserDetails();
         this.logout = true;
+        console.log(this.logout)
+        this.snackbarService.showSnackbar(
+          'User successfully logged in',
+          null,
+          'info'
+        );
       },
       error: (error: any) => {
         console.log(error);
+        this.snackbarService.showSnackbar(error.error.detail, 'info', 'info');
       },
     });
   }

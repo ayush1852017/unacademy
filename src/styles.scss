@@ -104,3 +104,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   ngx-intl-tel-input input[disabled] {
     background-color: #e5eaf1;
   }
+  .error-snackbar {
+    background-color: #e11e1e ;
+    color: #fff;
+  }
+  
+  .success-snackbar {
+    background-color: #1e9940;
+    color: #fff;
+  }
